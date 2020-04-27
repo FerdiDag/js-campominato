@@ -12,28 +12,36 @@
 
 // Il computer deve generare 16 numeri casuali tra 1 e 100, che saranno le "mine". (funzione con ciclo for ) (creo un array?)
 
-var cpuMines = [generateRandom(1, 100), generateRandom(1,100), generateRandom(1,100), generateRandom(1,100) ];
-
-console.log(cpuMines);
-
+var cpuMines = [];
 
 
 function generateRandom(min, max) {
-
-    for (var i = 0; i < 16; i++) {
-        var random = Math.floor(Math.random() * (+max - +min) + +min) + 1;
-       return random;
-
-    }
-
+    var random = Math.floor(Math.random() * (+max - +min) + +min) + 1;
+    return random;
 }
+
+function createMines() {
+    var random = generateRandom(1, 100);
+    cpuMines.push(random);
+}
+
+for (var i = 0; i < 16; i++) {
+    createMines();
+}
+
+console.log(cpuMines);
 
 // In seguito deve chiedere all'utente di inserire un numero alla volta, sempre compreso tra 1 e 100, che sarà la sua giocata.
 // Se il numero è presente nella lista delle mine, la partita termina, altrimenti il gioco continua chiedendo all'utente un altro numero (continua a giocare).
 // (ciclo do while?)
-
-
-// //do {
-//     var playerNumber = prompt('Inserisci un numero tra uno e 100');
-//
-// } while (true);
+do {
+    var playerNumber = parseInt(prompt('inserisci un numero tra 1 e 100'));
+    console.log(playerNumber);
+    if (isNaN(playerNumber)) {
+        alert('non hai inserito un numero');
+    } else if (playerNumber < 1) {
+        alert('hai inserito un numero fuori range (< 1)');
+    } else if (playerNumber > 100) {
+        alert('hai inserito un numero fuori range (> 100)');
+    }
+} while (isNaN(playerNumber) || playerNumber < 1 || playerNumber > 100);
