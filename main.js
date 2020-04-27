@@ -64,7 +64,7 @@ do {
     } else if (playerNumber > 100) {
         alert('hai inserito un numero fuori range (> 100)');
     } else if (isMina(playerNumber)) {
-        alert('Hai perso');
+        alert('Hai perso, hai preso una mina');
     } else {
         alert('Hai vinto');
     }
