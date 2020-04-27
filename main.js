@@ -37,14 +37,14 @@ console.log(cpuMines);
 
 function isMina() {
 
-for (var i = 0; i < cpuMines.length; i++) {
+    for (var i = 0; i < cpuMines.length; i++) {
 
-    if (playerNumber == cpuMines[i]) {
-        return true;
-    } else {
-        return false;
+        if (playerNumber == cpuMines[i]) {
+            return true;
+        } else {
+            return false;
+        }
     }
-}
 
 }
 
@@ -68,4 +68,4 @@ do {
     } else {
         alert('Hai vinto');
     }
-} while (isNaN(playerNumber) || playerNumber < 1 || playerNumber > 100);
+} while(isNaN(playerNumber) || isMina(playerNumber) || playerNumber < 1 || playerNumber > 100);
