@@ -31,6 +31,26 @@ for (var i = 0; i < 16; i++) {
 
 console.log(cpuMines);
 
+
+
+
+
+function isMina() {
+
+for (var i = 0; i < cpuMines.length; i++) {
+
+    if (playerNumber == cpuMines[i]) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+}
+
+
+
+
 // In seguito deve chiedere all'utente di inserire un numero alla volta, sempre compreso tra 1 e 100, che sarà la sua giocata.
 // Se il numero è presente nella lista delle mine, la partita termina, altrimenti il gioco continua chiedendo all'utente un altro numero (continua a giocare).
 // (ciclo do while?)
@@ -43,5 +63,9 @@ do {
         alert('hai inserito un numero fuori range (< 1)');
     } else if (playerNumber > 100) {
         alert('hai inserito un numero fuori range (> 100)');
+    } else if (isMina(playerNumber)) {
+        alert('Hai perso');
+    } else {
+        alert('Hai vinto');
     }
 } while (isNaN(playerNumber) || playerNumber < 1 || playerNumber > 100);
