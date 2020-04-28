@@ -20,30 +20,36 @@ function generateRandom(min, max) {
     return random;
 }
 
-function createMines() {
-    var random = generateRandom(1, 100);
-    cpuMines.push(random);
-}
+// function createMines() {
+//     var random = generateRandom(1, 100);
+//     cpuMines.push(random);
+// }
 
-for (var i = 0; i < 16; i++) {
-    createMines();
-}
+// for (var i = 0; i < 16; i++) {
+//     createMines();
+// }
 
+// console.log(cpuMines);
+
+
+while (cpuMines.length < 16) {
+    var numerocasuale = generateRandom(1, 100);
+    if (!cpuMines.includes(numerocasuale)) {
+        cpuMines.push(numerocasuale);
+    }
+}
 console.log(cpuMines);
 
+function isMina(numero, array_mine) {
+    var trovato = false;
+    for (var i = 0; i < array_mine.length; i++) {
 
-
-function isMina() {
-
-    for (var i = 0; i < cpuMines.length; i++) {
-
-        if (playerNumber == cpuMines[i]) {
-            return true;
-        } else {
-            return false;
+        if (numero == array_mine[i]) {
+            trovato = true;
         }
-    }
 
+    }
+    return trovato;
 }
 
 
@@ -53,21 +59,24 @@ function isMina() {
 // Se il numero è presente nella lista delle mine, la partita termina, altrimenti il gioco continua chiedendo all'utente un altro numero (continua a giocare).
 // (ciclo do while?)
 
-
+var num = 0;
 do {
-    var num = [];
+
     var playerNumber = parseInt(prompt('inserisci un numero tra 1 e 100'));
 
 
-    console.log(playerNumber);
+    console.log('Il numero scelto dall\'utente è ' + playerNumber);
     if (isNaN(playerNumber)) {
         alert('non hai inserito un numero');
     } else if (playerNumber < 1) {
         alert('hai inserito un numero fuori range (< 1)');
     } else if (playerNumber > 100) {
         alert('hai inserito un numero fuori range (> 100)');
-    } else if (isMina(playerNumber)) {
+    } else if (isMina(playerNumber, cpuMines)) {
         alert('Hai perso, hai preso una mina');
+    } else {
+        num++;
     }
 }
-while (isNaN(playerNumber) || isMina(playerNumber) || playerNumber < 1 || playerNumber > 100);
+while (isNaN(playerNumber) || !isMina(playerNumber, cpuMines) || playerNumber < 1 || playerNumber > 100);
+console.log('Il numero di tentativi è ' + num);
